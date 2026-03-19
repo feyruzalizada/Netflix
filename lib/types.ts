@@ -13,6 +13,7 @@ export interface Content {
   thumbnail: string;
   quality: Quality;
   trending: boolean;
+  subtitle?: string;
 }
 
 export interface GeoData {
