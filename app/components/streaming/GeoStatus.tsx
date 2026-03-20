@@ -5,6 +5,12 @@ interface GeoStatusProps {
   region: string;
 }
 
+const getLatencyColor = (ms: number) => {
+  if (ms < 20) return "text-green-400";
+  if (ms < 60) return "text-yellow-400";
+  return "text-red-400";
+};
+
 export function GeoStatus({ geo, region }: GeoStatusProps) {
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 mb-8 flex flex-wrap items-center gap-4 text-sm">
@@ -22,7 +28,7 @@ export function GeoStatus({ geo, region }: GeoStatusProps) {
         Edge Node: <span className="text-white font-semibold">{geo.edge}</span>
       </span>
       <span className="text-gray-400">
-        Latency: <span className="text-green-400 font-semibold">{geo.latency}ms</span>
+        Latency: <span className={`${getLatencyColor(geo.latency)} font-semibold`}>{geo.latency}ms</span>
       </span>
     </div>
   );
