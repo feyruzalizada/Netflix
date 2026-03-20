@@ -13,6 +13,8 @@ export function getGeoFromHeaders(headers: Headers): GeoData {
 export function getRegionLabel(country: string): string {
   const map: Record<string, string> = {
     US: "North America",
+    CA: "North America",
+    MX: "Latin America",
     GB: "Europe",
     JP: "Asia Pacific",
     AU: "Asia Pacific",
