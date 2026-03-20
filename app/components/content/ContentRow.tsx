@@ -21,7 +21,7 @@ export function ContentRow({ row }: ContentRowProps) {
   };
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       <h2 className="text-white text-2xl font-bold mb-4 px-4">{row.label}</h2>
       <div className="relative group">
         <button
