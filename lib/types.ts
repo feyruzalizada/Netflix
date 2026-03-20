@@ -5,6 +5,7 @@ export type Quality = "4K" | "1080p" | "720p";
 export interface Content {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
   genre: Genre;
   year: number;
@@ -13,7 +14,6 @@ export interface Content {
   thumbnail: string;
   quality: Quality;
   trending: boolean;
-  subtitle?: string;
 }
 
 export interface GeoData {
@@ -30,16 +30,7 @@ export interface StreamEvent {
   content: string;
   timestamp: string;
   region: string;
-}
-
-export interface MetricData {
-  ttfb: number;
-  fcp: number;
-  lcp: number;
-  region: string;
-  edge: string;
-  requests: number;
-  cacheHit: number;
+  viewers?: number;
 }
 
 export type ContentRow = {
