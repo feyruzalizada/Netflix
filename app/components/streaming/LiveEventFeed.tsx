@@ -59,7 +59,7 @@ export function LiveEventFeed() {
       setConnected(false);
       setError("Connection lost. Reconnecting...");
       es.close();
-      setTimeout(connect, 3000);
+      setTimeout(connect, 5000); // increased from 3s to reduce server pressure
     };
   }, []);
 
