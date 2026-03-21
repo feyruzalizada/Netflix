@@ -16,7 +16,7 @@ export async function RegionalContentServer() {
   const geo = getGeoFromHeaders(headerList);
   const region = getRegionLabel(geo.country);
   const genres = regionContentMap[region] ?? regionContentMap["Global"];
-  const recommended = allContent.filter((c) => genres.includes(c.genre)).slice(0, 6);
+  const recommended = allContent.filter((c) => genres.includes(c.genre)).slice(0, 8);
 
   return <RegionalContent geo={geo} region={region} recommended={recommended} />;
 }
