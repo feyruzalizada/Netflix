@@ -47,7 +47,7 @@ export function LiveEventFeed() {
 
     es.addEventListener("stream", (e: MessageEvent) => {
       const event: StreamEvent = JSON.parse(e.data);
-      setEvents((prev) => [event, ...prev].slice(0, 50));
+      setEvents((prev) => [event, ...prev].slice(0, 50) // hard cap to avoid memory growth);
     });
 
     es.addEventListener("done", () => {
