@@ -28,7 +28,7 @@ export default function Home() {
               </>
             }
           >
-            <RegionalContentServer />
+            <RegionalContentServer key="regional" />
           </Suspense>
 
           {/* Standard content rows */}
