@@ -33,7 +33,7 @@ export function FeaturedContent({ content }: FeaturedContentProps) {
               ▶ Play
             </button>
             <button className="bg-gray-600 text-white px-6 py-3 rounded font-bold hover:bg-gray-700 transition">
-              + My List
+              ⓘ More Info
             </button>
           </div>
         </div>
