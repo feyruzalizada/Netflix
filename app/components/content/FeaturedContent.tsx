@@ -8,7 +8,7 @@ interface FeaturedContentProps {
 
 export function FeaturedContent({ content }: FeaturedContentProps) {
   return (
-    <div className="relative h-96 mb-12 overflow-hidden rounded-lg">
+    <div className="relative min-h-[60vh] mb-12 overflow-hidden rounded-lg">
       <img
         src={content.thumbnail}
         alt={content.title}
