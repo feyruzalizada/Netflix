@@ -17,10 +17,14 @@ export function getRegionLabel(country: string): string {
     MX: "Latin America",
     GB: "Europe",
     JP: "Asia Pacific",
+    KR: "Asia Pacific",
+    CN: "Asia Pacific",
     AU: "Asia Pacific",
     BR: "Latin America",
+    AR: "Latin America",
     DE: "Europe",
     FR: "Europe",
+    IT: "Europe",
     AZ: "Europe",
   };
   return map[country] ?? "Global";
