@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Next.js 16.2.1 has a known bug in auto-generated routes.d.ts type checking
   typescript: { ignoreBuildErrors: true },
-
-  // Allow images from picsum.photos for content thumbnails
   images: {
     remotePatterns: [
       {
@@ -13,7 +10,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Headers for edge caching and streaming optimization
   async headers() {
     return [
       {
@@ -32,9 +28,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [];
+  },
 };
-
-// Disable cache for development
-const isDev = process.env.NODE_ENV === "development";
 
 export default nextConfig;
