@@ -31,8 +31,10 @@ export function LiveEventFeed() {
   const [error, setError] = React.useState<string | null>(null);
   const feedRef = React.useRef<HTMLDivElement>(null);
   const esRef = React.useRef<EventSource | null>(null);
+  const mountedRef = React.useRef(true);
 
   const connect = React.useCallback(() => {
+    if (!mountedRef.current) return;
     if (esRef.current) {
       esRef.current.close();
     }
@@ -42,12 +44,13 @@ export function LiveEventFeed() {
     esRef.current = es;
 
     es.addEventListener("connected", () => {
-      setConnected(true);
+      if (mountedRef.current) setConnected(true);
     });
 
     es.addEventListener("stream", (e: MessageEvent) => {
+      if (!mountedRef.current) return;
       const event: StreamEvent = JSON.parse(e.data);
-      setEvents((prev) => [event, ...prev].slice(0, 50) // hard cap to avoid memory growth);
+      setEvents((prev) => [event, ...prev].slice(0, 50)); // hard cap to avoid memory growth
     });
 
     es.addEventListener("done", () => {
@@ -56,6 +59,7 @@ export function LiveEventFeed() {
     });
 
     es.onerror = () => {
+      if (!mountedRef.current) return;
       setConnected(false);
       setError("Connection lost. Reconnecting...");
       es.close();
@@ -64,8 +68,10 @@ export function LiveEventFeed() {
   }, []);
 
   React.useEffect(() => {
+    mountedRef.current = true;
     connect();
     return () => {
+      mountedRef.current = false;
       esRef.current?.close();
     };
   }, [connect]);
@@ -77,10 +83,10 @@ export function LiveEventFeed() {
   }, [events]);
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+    <div className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden mb-8">
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800">
         <h3 className="text-white font-bold text-sm uppercase tracking-wider">
-          Live Activity Feed
+          Live Active Streams
         </h3>
         <div className="flex items-center gap-2">
           {error && <span className="text-yellow-400 text-xs">{error}</span>}
